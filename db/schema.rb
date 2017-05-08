@@ -10,15 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170425173207) do
+ActiveRecord::Schema.define(version: 20170508010713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "estudiantes", force: :cascade do |t|
+    t.integer  "rut"
+    t.string   "nombres"
+    t.string   "apellidos"
+    t.string   "email"
+    t.string   "dreccion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "informe_id"
+    t.integer  "rol_id"
+  end
 
   create_table "fichas", force: :cascade do |t|
     t.text     "descripcion"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "grupo_tutorias", force: :cascade do |t|
+    t.string   "coordinador"
+    t.string   "tutor"
+    t.string   "tutorado"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "estudiante_id"
+  end
+
+  create_table "informes", force: :cascade do |t|
+    t.integer  "estado"
+    t.integer  "fecha"
+    t.string   "tutor"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "respuesta_id"
   end
 
   create_table "preguntas", force: :cascade do |t|
@@ -27,4 +57,59 @@ ActiveRecord::Schema.define(version: 20170425173207) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "respuesta", force: :cascade do |t|
+    t.string   "pregunta"
+    t.string   "respuesta"
+    t.string   "informe"
+    t.string   "tutorado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "respuestas", force: :cascade do |t|
+    t.string   "pregunta"
+    t.string   "informe"
+    t.string   "respuesta"
+    t.string   "tutorado"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "pregunta_id"
+  end
+
+  create_table "rol_usuarios", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "rol_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "usuarios", force: :cascade do |t|
+    t.integer  "rut"
+    t.integer  "email"
+    t.string   "nombres"
+    t.string   "apellidos"
+    t.integer  "password"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "ficha_id"
+    t.integer  "rol_usuario_id"
+    t.integer  "grupo_tutoria_id"
+    t.integer  "informe_id"
+  end
+
+  add_foreign_key "estudiantes", "informes"
+  add_foreign_key "estudiantes", "roles", column: "rol_id"
+  add_foreign_key "grupo_tutorias", "estudiantes"
+  add_foreign_key "informes", "respuestas"
+  add_foreign_key "respuestas", "preguntas"
+  add_foreign_key "rol_usuarios", "roles", column: "rol_id"
+  add_foreign_key "usuarios", "fichas"
+  add_foreign_key "usuarios", "grupo_tutorias"
+  add_foreign_key "usuarios", "informes"
+  add_foreign_key "usuarios", "rol_usuarios"
 end

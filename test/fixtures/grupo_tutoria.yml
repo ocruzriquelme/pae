@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  coordinador: MyString
+  tutor: MyString
+  tutorado: MyString
+
+two:
+  coordinador: MyString
+  tutor: MyString
+  tutorado: MyString
