@@ -1,7 +1,7 @@
 class Estudiante < ApplicationRecord
   has_many :informe
   has_many :rol
-  belongs_to :grupo_tutorias
+  has_many :grupo_tutorias
   validates :nombres, presence: true
   validates :apellidos, presence: true
   validates :direccion, presence: true

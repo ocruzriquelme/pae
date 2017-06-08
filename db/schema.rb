@@ -10,21 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170508010713) do
+ActiveRecord::Schema.define(version: 20170608170109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carreras", force: :cascade do |t|
+    t.integer  "codigo"
+    t.string   "nombre"
+    t.integer  "duracion"
+    t.string   "jefe_carrera"
+    t.string   "regimen"
+    t.string   "escuela"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "comunas", force: :cascade do |t|
+    t.string   "nombre"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "provincia_id"
+  end
 
   create_table "estudiantes", force: :cascade do |t|
     t.integer  "rut"
     t.string   "nombres"
     t.string   "apellidos"
     t.string   "email"
-    t.string   "dreccion"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "informe_id"
+    t.string   "direccion"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "rol_id"
+    t.integer  "comuna_id"
+    t.integer  "carrera_id"
+    t.date     "fecha_nacimiento"
+    t.string   "priorizacion"
+    t.string   "priorizacion_sin_distincion"
+    t.integer  "edad"
   end
 
   create_table "fichas", force: :cascade do |t|
@@ -55,6 +78,22 @@ ActiveRecord::Schema.define(version: 20170508010713) do
     t.string   "pregunta"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "provincias", force: :cascade do |t|
+    t.string   "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "region_id"
+  end
+
+  create_table "regiones", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "nombre"
+    t.string   "corfo"
+    t.string   "codigo"
+    t.integer  "numero"
   end
 
   create_table "respuesta", force: :cascade do |t|
@@ -102,10 +141,13 @@ ActiveRecord::Schema.define(version: 20170508010713) do
     t.integer  "informe_id"
   end
 
-  add_foreign_key "estudiantes", "informes"
+  add_foreign_key "comunas", "provincias"
+  add_foreign_key "estudiantes", "carreras"
+  add_foreign_key "estudiantes", "comunas"
   add_foreign_key "estudiantes", "roles", column: "rol_id"
   add_foreign_key "grupo_tutorias", "estudiantes"
   add_foreign_key "informes", "respuestas"
+  add_foreign_key "provincias", "regiones", column: "region_id"
   add_foreign_key "respuestas", "preguntas"
   add_foreign_key "rol_usuarios", "roles", column: "rol_id"
   add_foreign_key "usuarios", "fichas"

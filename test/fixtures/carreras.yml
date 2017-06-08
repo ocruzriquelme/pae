@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  codigo: 1
+  nombre: MyString
+  duracion: 1
+  jefe_carrera: MyString
+  regimen: MyString
+  escuela: MyString
+
+two:
+  codigo: 1
+  nombre: MyString
+  duracion: 1
+  jefe_carrera: MyString
+  regimen: MyString
+  escuela: MyString
