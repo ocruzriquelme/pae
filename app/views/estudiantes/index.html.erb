@@ -1,0 +1,24 @@
+<h1> <%= link_to 'Crear estudiante', nuevo_estudiante_path %> </h1>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Nombres</th>
+    <th>Apellidos</th>
+    <th>Mostrar</th>
+    <th>editar</th>
+    <th>eliminar</th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @estudiante.each do |estudiante| %>
+      <tr>
+        <td><%= estudiante.nombres %></td>
+        <td><%= estudiante.apellidos %></td>
+        <td><%= link_to 'Mostrar', estudiante_url(estudiante) %></td>
+        <td><%= link_to 'Editar', editar_estudiante_path(estudiante)%></td>
+        <td><%= link_to 'Eliminar', estudiante, method: :delete, data: {confirm: 'Esta seguro de eliminar estudiante?'} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

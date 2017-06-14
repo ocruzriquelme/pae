@@ -1,5 +1,5 @@
 class Pregunta < ApplicationRecord
   self.table_name = 'preguntas'
-  belongs_to :respuesta
+  has_many :respuestas
   validates :pregunta, presence: true
 end

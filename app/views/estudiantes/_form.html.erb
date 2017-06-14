@@ -1,0 +1,31 @@
+<%= form_for(@estudiante, :html => {:role => 'form'}) do |f| %>
+    <% if @estudiante.errors.any? %>
+        <%= pluralize(@estudiante.errors.count, "error") %>
+
+        <% @estudiante.errors.full_messages.each do |actual| %>
+            <%= actual %>
+        <% end %>
+    <% end %>
+    <p>
+      <%= f.label :nombres %> <br>
+      <%= f.text_field :nombres %>
+    </p>
+    <p>
+      <%= f.label :apellidos %> <br>
+      <%= f.text_field :apellidos %>
+    </p>
+    <p>
+      <%= f.label :rut %> <br>
+      <%= f.number_field :rut %>
+    </p>
+    <p>
+      <%= f.label :email %> <br>
+      <%= f.text_field :email %>
+    </p>
+    <p>
+      <%= f.label :direccion %> <br>
+      <%= f.text_field :direccion %>
+    </p>
+
+    <%= f.submit %>
+<% end %>
