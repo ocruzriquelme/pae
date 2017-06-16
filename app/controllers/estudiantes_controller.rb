@@ -1,3 +1,5 @@
+require 'sepa_api'
+
 class EstudiantesController < ApplicationController
   before_action :set_estudiante,only:[:mostrar, :editar, :eliminar, :update]
 
@@ -5,12 +7,15 @@ class EstudiantesController < ApplicationController
     @estudiante = Estudiante.all
   end
   def crear
-    @estudiante = Estudiante.new(estudiante_params)
+    rut = params['estudiante']['rut']
+    p 'mi rut es: '+rut.to_s
+    sepa = SepaApi.new()
+    @estudiante = sepa.getEstudiante(rut)
     respond_to do |format|
       if @estudiante.save
         format.html {redirect_to @estudiante, notice: 'Fue creado con mucho exito'}
       else
-        format.html {render :nuevo}
+        format.html {render :editar}
       end
     end
   end

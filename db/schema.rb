@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608170109) do
+ActiveRecord::Schema.define(version: 20170615173946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20170608170109) do
   end
 
   create_table "estudiantes", force: :cascade do |t|
-    t.integer  "rut"
+    t.string   "rut"
     t.string   "nombres"
     t.string   "apellidos"
     t.string   "email"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20170608170109) do
     t.string   "priorizacion"
     t.string   "priorizacion_sin_distincion"
     t.integer  "edad"
+    t.integer  "ingreso"
   end
 
   create_table "fichas", force: :cascade do |t|

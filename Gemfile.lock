@@ -57,6 +57,8 @@ GEM
     ffi (1.9.18)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    httparty (0.15.5)
+      multi_xml (>= 0.5.2)
     i18n (0.8.1)
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
@@ -79,6 +81,7 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
+    multi_xml (0.6.0)
     nested_form (0.3.2)
     nio4r (2.0.0)
     nokogiri (1.7.1)
@@ -160,6 +163,7 @@ DEPENDENCIES
   adminlte-generators
   byebug
   coffee-rails (~> 4.2)
+  httparty
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)

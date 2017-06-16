@@ -1,5 +1,21 @@
 <h1>Ingresa un nuevo estudiante2</h1>
 
-<%= render 'form' %>
+<%= form_for(@estudiante, :html => {:role => 'form'}) do |f| %>
+    <% if @estudiante.errors.any? %>
+        <%= pluralize(@estudiante.errors.count, "error") %>
+
+        <% @estudiante.errors.full_messages.each do |actual| %>
+            <%= actual %>
+        <% end %>
+    <% end %>
+
+    <p>
+      <%= f.label :rut %> <br>
+      <%= f.text_field :rut %>
+    </p>
+
+
+    <%= f.submit %>
+<% end %>
 
 <%= link_to 'Volver', root_path %>
