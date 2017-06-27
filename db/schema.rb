@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170615173946) do
+ActiveRecord::Schema.define(version: 20170627070209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,16 +39,15 @@ ActiveRecord::Schema.define(version: 20170615173946) do
     t.string   "apellidos"
     t.string   "email"
     t.string   "direccion"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "rol_id"
     t.integer  "comuna_id"
     t.integer  "carrera_id"
     t.date     "fecha_nacimiento"
-    t.string   "priorizacion"
-    t.string   "priorizacion_sin_distincion"
     t.integer  "edad"
     t.integer  "ingreso"
+    t.integer  "priorizacion_id"
   end
 
   create_table "fichas", force: :cascade do |t|
@@ -57,13 +56,17 @@ ActiveRecord::Schema.define(version: 20170615173946) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "grupo_tutorias", force: :cascade do |t|
-    t.string   "coordinador"
-    t.string   "tutor"
-    t.string   "tutorado"
+  create_table "grupo_tutorados", force: :cascade do |t|
+    t.integer  "estudiante_id"
+    t.integer  "grupo_tutor_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "grupo_tutores", force: :cascade do |t|
+    t.integer  "estudiante_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.integer  "estudiante_id"
   end
 
   create_table "informes", force: :cascade do |t|
@@ -77,6 +80,12 @@ ActiveRecord::Schema.define(version: 20170615173946) do
 
   create_table "preguntas", force: :cascade do |t|
     t.string   "pregunta"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "priorizaciones", force: :cascade do |t|
+    t.string   "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -97,15 +106,6 @@ ActiveRecord::Schema.define(version: 20170615173946) do
     t.integer  "numero"
   end
 
-  create_table "respuesta", force: :cascade do |t|
-    t.string   "pregunta"
-    t.string   "respuesta"
-    t.string   "informe"
-    t.string   "tutorado"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "respuestas", force: :cascade do |t|
     t.string   "pregunta"
     t.string   "informe"
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 20170615173946) do
   end
 
   create_table "roles", force: :cascade do |t|
-    t.string   "nombre"
+    t.string   "nombres"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -134,25 +134,26 @@ ActiveRecord::Schema.define(version: 20170615173946) do
     t.string   "nombres"
     t.string   "apellidos"
     t.integer  "password"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "ficha_id"
     t.integer  "rol_usuario_id"
-    t.integer  "grupo_tutoria_id"
     t.integer  "informe_id"
   end
 
   add_foreign_key "comunas", "provincias"
   add_foreign_key "estudiantes", "carreras"
   add_foreign_key "estudiantes", "comunas"
+  add_foreign_key "estudiantes", "priorizaciones", column: "priorizacion_id"
   add_foreign_key "estudiantes", "roles", column: "rol_id"
-  add_foreign_key "grupo_tutorias", "estudiantes"
+  add_foreign_key "grupo_tutorados", "estudiantes"
+  add_foreign_key "grupo_tutorados", "grupo_tutores", column: "grupo_tutor_id"
+  add_foreign_key "grupo_tutores", "estudiantes"
   add_foreign_key "informes", "respuestas"
   add_foreign_key "provincias", "regiones", column: "region_id"
   add_foreign_key "respuestas", "preguntas"
   add_foreign_key "rol_usuarios", "roles", column: "rol_id"
   add_foreign_key "usuarios", "fichas"
-  add_foreign_key "usuarios", "grupo_tutorias"
   add_foreign_key "usuarios", "informes"
   add_foreign_key "usuarios", "rol_usuarios"
 end

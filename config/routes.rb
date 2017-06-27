@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'informes/:id',to: 'informes#mostrar', as: 'informe'
   get 'informes/:id/editar', to: 'informes#editar', as: 'editar_informe'
   get 'informes/nuevo/', to: 'informes#nuevo', as: 'nuevo_informe'
+  get 'informes/pregunta/', to: 'informes#pregunta_campos', as: 'pregunta_campos'
   post 'informes/', to: 'informes#crear'
   put 'informes/:id' , to: 'informes#update'
   patch 'informes/:id' ,to: 'informes#update'
@@ -20,6 +21,9 @@ Rails.application.routes.draw do
   put 'estudiantes/:id' , to: 'estudiantes#update'
   patch 'estudiantes/:id' ,to: 'estudiantes#update'
   delete 'estudiantes/:id', to: 'estudiantes#eliminar'
+
+  get 'tutores/', to: 'estudiantes#tutores', as: 'tutores'
+  get 'tutorados/', to: 'estudiantes#tutorados', as: 'tutorados'
 
 
   get 'fichas/', to: 'fichas#index', as: 'fichas'

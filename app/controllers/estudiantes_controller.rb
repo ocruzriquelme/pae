@@ -4,16 +4,19 @@ class EstudiantesController < ApplicationController
   before_action :set_estudiante,only:[:mostrar, :editar, :eliminar, :update]
 
   def index
-    @estudiante = Estudiante.all
+    @index = 'index'
+    @estudiantes = Estudiante.all
   end
   def crear
+    require 'rut_chileno'
     rut = params['estudiante']['rut']
-    p 'mi rut es: '+rut.to_s
     sepa = SepaApi.new()
     @estudiante = sepa.getEstudiante(rut)
+    @estudiante.rol_id = (Rol.find_by_nombres('Tutorado')).id
+    @estudiante.priorizacion_id = (Priorizacion.find_by_nombre('No priorizado')).id
     respond_to do |format|
       if @estudiante.save
-        format.html {redirect_to @estudiante, notice: 'Fue creado con mucho exito'}
+        format.html {redirect_to editar_estudiante_path(@estudiante), notice: 'Fue creado con mucho exito'}
       else
         format.html {render :editar}
       end
@@ -47,13 +50,29 @@ class EstudiantesController < ApplicationController
   def nuevo
     @estudiante = Estudiante.new
   end
+  def tutores
+    @index = 'no index'
+    @estudiantes = Estudiante.where(rol_id: (Rol.find_by_nombres('Tutor')).id).paginate(:page => params[:page], :per_page => 12)
+    respond_to do |format|
+      format.html{ render :template => "/estudiantes/index"}
+    end
+  end
+
+  def tutorados
+    @index = 'no index'
+    @estudiantes = Estudiante.where(rol_id: (Rol.find_by_nombres('Tutorado')).id).paginate(:page => params[:page], :per_page => 12)
+    respond_to do |format|
+      format.html{ render :template => "/estudiantes/index"}
+    end
+  end
+
   private
   def set_estudiante
     @estudiante = Estudiante.find(params[:id])
   end
 
   def estudiante_params
-    params.require(:estudiante).permit(:rut, :nombres, :apellidos, :email, :direccion, :rol_id, :comuna_id, :carrera_id, :fecha_nacimiento, :priorizacion, :priorizacion_sin_distincion, :edad)
+    params.require(:estudiante).permit(:rut, :nombres, :apellidos, :email, :direccion,:priorizacion_id, :rol_id, :comuna_id, :carrera_id, :fecha_nacimiento,  :edad)
   end
 
 

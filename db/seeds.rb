@@ -422,3 +422,17 @@ Comuna.create(nombre: 'San Joaquín',provincia_id: ( Provincia.find_by_nombre('S
 Comuna.create(nombre: 'San Ramón',provincia_id: ( Provincia.find_by_nombre('Santiago')).id)
 Comuna.create(nombre: 'Santiago',provincia_id: ( Provincia.find_by_nombre('Santiago')).id)
 Comuna.create(nombre: 'Vitacura',provincia_id: ( Provincia.find_by_nombre('Santiago')).id)
+
+
+
+Priorizacion.create(nombre: 'No priorizado ')
+Priorizacion.create(nombre: 'Priorizacion 1 ')
+Priorizacion.create(nombre: 'Priorizacion 2 ')
+Priorizacion.create(nombre: 'Priorizacion 3 ')
+
+Rol.create(nombres: 'Tutor')
+Rol.create(nombres: 'Tutorado')
+Rol.create(nombres: 'Sin Tutor')
+Rol.create(nombres: 'Administrador')
+Rol.create(nombres: 'Profesional')
+

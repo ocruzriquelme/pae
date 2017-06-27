@@ -16,7 +16,7 @@
     </p>
     <p>
       <%= f.label :rut %> <br>
-      <%= f.number_field :rut %>
+      <%= f.text_field :rut %>
     </p>
     <p>
       <%= f.label :email %> <br>
@@ -26,6 +26,35 @@
       <%= f.label :direccion %> <br>
       <%= f.text_field :direccion %>
     </p>
+    <p>
+      <%= f.label :ingreso%> <br>
+      <%= f.text_field :ingreso%>
+    </p>
+    <p>
+      <%= f.label :edad%> <br>
+      <%= f.text_field :edad%>
+    </p>
+    <p>
+      <%= f.label :fecha_nacimiento%> <br>
+      <%= f.text_field :fecha_nacimiento%>
+    </p>
+     <p>
+       <%= f.label :priorizacion %><br>
+       <%= f.select('priorizacion_id', Priorizacion.all.collect { |c| [c.nombre, c.id] }) %>
 
-    <%= f.submit %>
+     </p>
+    <p>
+      <%= f.label :comuna %><br>
+      <%= f.select('comuna_id', Comuna.all.collect { |c| [c.nombre, c.id] }) %>
+    </p>
+    <p>
+      <%= f.label :rol %><br>
+      <%= f.select('rol_id', Rol.all.collect { |c| [c.nombres, c.id] }) %>
+    </p>
+    <p>
+      <%= f.label :carrera %><br>
+      <%= f.select('carrera_id', Carrera.all.collect { |c| [c.nombre, c.id] }) %>
+    </p>
+
+    <%= f.submit :Actualizar, class: 'btn btn-info' %>
 <% end %>

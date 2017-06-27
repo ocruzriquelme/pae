@@ -1,11 +1,77 @@
-<h1>Estudiante</h1>
+<h1>
+  <%= @estudiante.nombres.to_s.upcase %>
+  <% if @estudiante.priorizacion==nil || @estudiante.priorizacion.nombre == 'No priorizado' %>
+      <% if @estudiante.rol!=nil %>
+          <% if @estudiante.rol.nombres != 'Tutor' %>
+              <br><span class="label label-danger">Estudiante no Priorizado</span>
+          <% end %>
+      <% end %>
+  <% end %>
+</h1>
 
-Nombres:<%= @estudiante.nombres %><br>
-Apellidos:<%= @estudiante.apellidos %><br>
-Rut:<%= @estudiante.rut %><br>
-Email:<%= @estudiante.email %><br>
-Ingreso:<%=@estudiante.ingreso %><br>
+<table class="table table-bordered table-striped">
+  <tbody>
+  <tr>
+    <td>Nombres</td>
+    <td><%= @estudiante.nombres.to_s %></td>
+  </tr>
+  <tr>
+    <td>Apellidos</td>
+    <td><%= @estudiante.apellidos.to_s %></td>
+  </tr>
+  <tr>
+    <td>Rut</td>
+    <td><%= @estudiante.rut.to_s %></td>
+  </tr>
+  <tr>
+    <td>E-mail</td>
+    <td><%= @estudiante.email.to_s %></td>
+  </tr>
+  <tr>
+    <td>Dirección</td>
+    <td><%= @estudiante.direccion.to_s %></td>
+  </tr>
+  <tr>
+    <td>Comuna</td>
+    <td><%= @estudiante.comuna.nombre.to_s %></td>
+  </tr>
+  <tr>
+    <td>Rol</td>
+    <% if @estudiante.rol!=nil %>
+        <td><%= @estudiante.rol.nombres.to_s %></td>
+    <% else %>
+        <td> Estudiante sin rol</td>
+    <% end %>
+  </tr>
+  <tr>
+    <td>Carrera</td>
+    <td><%= @estudiante.carrera.nombre.to_s %></td>
+  </tr>
+  <tr>
+    <td>Priorizacion</td>
+    <% if @estudiante.priorizacion!=nil %>
+        <td><%= @estudiante.priorizacion.nombre.to_s %></td>
+    <% else %>
+        <td>No Priorizado</td>
+    <% end %>
+  </tr>
+  <tr>
+    <td>Fecha Nacimiento</td>
+    <% if @estudiante.fecha_nacimiento!=nil %>
+    <td><%= @estudiante.fecha_nacimiento.strftime("%d - %m - %Y") %></td>
+    <% else %>
+        <td>No hay fecha</td>
+    <% end %>
+  </tr>
+  <tr>
+    <td>Edad</td>
+    <td><%= @estudiante.edad.to_s %></td>
+  </tr>
+  <tr>
+    <td>Nº de Ingresos</td>
+    <td><%= @estudiante.ingreso.to_s %></td>
+  </tr>
+  </tbody>
+</table>
 
-<%= link_to 'Volver', root_path, class:'btn btn-info' %><br>
-
-<br><br><br>
+<%= link_to 'Volver', root_path, class: 'btn btn-info' %><br>

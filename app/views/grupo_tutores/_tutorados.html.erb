@@ -1,0 +1,15 @@
+<% @grupo_tutorados  = GrupoTutorado.new  %>
+<%= form_for @grupo_tutorados, url: grupo_tutores_path, html: {method: :post} do |f| %>
+    <% if @grupo_tutorados.errors.any? %>
+        <%= pluralize(@grupo_tutorados.errors.count, "error") %>
+
+        <% @grupo_tutorados.errors.full_messages.each do |actual| %>
+            <%= actual %>
+        <% end %>
+    <% end %>
+    <p>
+      <%= f.label :tutorado %><br>
+      <%= f.select('estudiante_id', Estudiante.where(rol_id: (Rol.find_by_nombres('Tutorado')).id).collect {|c| [c.nombres, c.id]}) %>
+    </p>
+
+<% end %>

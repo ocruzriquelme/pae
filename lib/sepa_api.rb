@@ -17,7 +17,7 @@ class SepaApi
           salida.email = respuesta['email']
           direccion = respuesta['direccion'].split(", ")
           salida.direccion = direccion[0]
-          salida.comuna_id = (Comuna.find_by_nombre(direccion[1].capitalize)).id
+          salida.comuna_id = (Comuna.find_by_nombre(direccion[1].split.map(&:capitalize).*' ')).id
           carrera_y_cohorte= getCohortesYCarrera(rut)
           salida.carrera_id = carrera_y_cohorte[:carrera_id]
           salida.ingreso = carrera_y_cohorte[:numero_cohorte]
@@ -34,7 +34,7 @@ class SepaApi
       case respuesta.response.code.to_i
         when 200
           carreraPersistir(respuesta[0])
-          salida ={numero_cohorte: respuesta.size, carrera_id: (Carrera.find_by_nombre(respuesta[0]['nombreCarrera'])).id}
+          salida ={numero_cohorte: (respuesta.size-1), carrera_id: (Carrera.find_by_nombre(respuesta[0]['nombreCarrera'])).id}
       end
     end
     return salida

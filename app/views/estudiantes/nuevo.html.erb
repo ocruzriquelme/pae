@@ -1,4 +1,4 @@
-<h1>Ingresa un nuevo estudiante2</h1>
+<h1>Ingresa un estudiante</h1>
 
 <%= form_for(@estudiante, :html => {:role => 'form'}) do |f| %>
     <% if @estudiante.errors.any? %>
@@ -15,7 +15,7 @@
     </p>
 
 
-    <%= f.submit %>
+    <%= f.submit %> <br>
 <% end %>
 
-<%= link_to 'Volver', root_path %>
+<%= link_to 'Volver', root_path, class:'btn btn-info' %>
