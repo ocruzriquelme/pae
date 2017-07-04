@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170704171541) do
+ActiveRecord::Schema.define(version: 20170704171824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,7 +161,6 @@ ActiveRecord::Schema.define(version: 20170704171541) do
     t.datetime "updated_at",     null: false
     t.integer  "ficha_id"
     t.integer  "rol_usuario_id"
-    t.integer  "informe_id"
   end
 
   add_foreign_key "comunas", "provincias"
@@ -180,6 +179,5 @@ ActiveRecord::Schema.define(version: 20170704171541) do
   add_foreign_key "respuestas", "preguntas"
   add_foreign_key "rol_usuarios", "roles", column: "rol_id"
   add_foreign_key "usuarios", "fichas"
-  add_foreign_key "usuarios", "informes"
   add_foreign_key "usuarios", "rol_usuarios"
 end
