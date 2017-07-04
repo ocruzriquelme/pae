@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170704163930) do
+ActiveRecord::Schema.define(version: 20170704170115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,16 +90,15 @@ ActiveRecord::Schema.define(version: 20170704163930) do
     t.integer  "estado"
     t.integer  "fecha"
     t.string   "tutor"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.integer  "respuesta_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pregunta_informes", force: :cascade do |t|
     t.integer  "pregunta_id"
-    t.integer  "respuesta_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "informe_id"
   end
 
   create_table "preguntas", force: :cascade do |t|
@@ -173,9 +172,8 @@ ActiveRecord::Schema.define(version: 20170704163930) do
   add_foreign_key "grupo_tutorados", "estudiantes"
   add_foreign_key "grupo_tutorados", "grupo_tutores", column: "grupo_tutor_id"
   add_foreign_key "grupo_tutores", "estudiantes"
-  add_foreign_key "informes", "respuestas"
+  add_foreign_key "pregunta_informes", "informes"
   add_foreign_key "pregunta_informes", "preguntas"
-  add_foreign_key "pregunta_informes", "respuestas"
   add_foreign_key "provincias", "regiones", column: "region_id"
   add_foreign_key "respuestas", "preguntas"
   add_foreign_key "rol_usuarios", "roles", column: "rol_id"
