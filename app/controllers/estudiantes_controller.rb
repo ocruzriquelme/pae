@@ -2,6 +2,7 @@ require 'sepa_api'
 
 class EstudiantesController < ApplicationController
   before_action :set_estudiante,only:[:mostrar, :editar, :eliminar, :update]
+  before_action :authenticate_admin!
 
   def index
     @index = 'index'
