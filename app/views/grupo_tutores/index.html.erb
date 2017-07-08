@@ -1,0 +1,24 @@
+<h3> <%= link_to 'Crear grupo tutor', nuevo_grupo_tutor_path, class:'btn btn-primary btn-md' %> </h3>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>Nombres Tutores</th>
+    <th>Apellidos</th>
+    <th>Mostrar</th>
+    <th>Editar Grupo</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @grupo_tutores.each do |grupotutores| %>
+      <tr>
+        <td><%= grupotutores.nombres %></td>
+        <td><%= grupotutores.apellidos %></td>
+
+        <td><%= link_to 'Mostrar', grupotutores_url(grupotutores) %></td>
+        <td><%= link_to 'Editar', editar_grupo_tutor_path(grupotutores) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+
+</table>

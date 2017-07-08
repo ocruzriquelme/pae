@@ -9,17 +9,29 @@ class EstudiantesController < ApplicationController
     @estudiantes = Estudiante.all
   end
   def crear
-    require 'rut_chileno'
     rut = params['estudiante']['rut']
     sepa = SepaApi.new()
     @estudiante = sepa.getEstudiante(rut)
     @estudiante.rol_id = (Rol.find_by_nombres('Tutorado')).id
     @estudiante.priorizacion_id = (Priorizacion.find_by_nombre('No priorizado')).id
-    respond_to do |format|
-      if @estudiante.save
-        format.html {redirect_to editar_estudiante_path(@estudiante), notice: 'Fue creado con mucho exito'}
+    if @estudiante != nil
+      if Estudiante.find_by_rut(@estudiante.rut) == nil
+        respond_to do |format|
+          if @estudiante.save
+            format.html{redirect_to estudiante_path(@estudiante), notice: 'Guardado exitosamente en base de datos'}
+          else
+            format.html{render :nuevo}
+          end
+        end
       else
-        format.html {render :editar}
+        respond_to do |format|
+          @estudiante = Estudiante.find_by_rut(@estudiante.rut)
+          format.html{redirect_to estudiante_path(@estudiante), notice: 'Ya existe dicho estudiante'}
+        end
+      end
+    else
+      respond_to do |format|
+        format.html{redirect_to nuevo_estudiante_path(@estudiante), notice: 'Estudiante no encontrado en dirdoc'}
       end
     end
   end
