@@ -51,10 +51,6 @@
       <%= f.label :rol %><br>
       <%= f.select('rol_id', Rol.all.collect { |c| [c.nombres, c.id] }) %>
     </p>
-    <p>
-      <%= f.label :carrera %><br>
-      <%= f.select('carrera_id', Carrera.all.collect { |c| [c.nombre, c.id] }) %>
-    </p>
 
     <%= f.submit :Actualizar, class: 'btn btn-info' %>
 <% end %>

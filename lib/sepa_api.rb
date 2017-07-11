@@ -17,7 +17,7 @@ class SepaApi
           salida.email = respuesta['email']
           direccion = respuesta['direccion'].split(", ")
           salida.direccion = direccion[0]
-          salida.comuna_id = (Comuna.find_by_nombre(direccion[1].split.map(&:capitalize).*' ')).id
+          salida.comuna_id = (Comuna.find_by_nombre(direccion[1].split.map(&:capitalize).* ' ')).id
           carrera_y_cohorte= getCohortesYCarrera(rut)
           salida.carrera_id = carrera_y_cohorte[:carrera_id]
           salida.ingreso = carrera_y_cohorte[:numero_cohorte]
@@ -51,5 +51,56 @@ class SepaApi
     end
   end
 
+
+  def mayorAnio(anio)
+    mayor = -9999
+    for i in 0..anio.size
+      if mayor < anio[i]
+        mayor = anio[i]
+      end
+    end
+    return mayor
+  end
+
+  def ultimoSemestre (semestre)
+    mayor = -9999
+    for i in 0..semestre.size
+      if mayor < semestre[i]
+        mayor = semestre[i]
+      end
+    end
+    return mayor
+  end
+
+  def asignaturasUltimoSemestre(rut)
+    salida = []
+    if rut!= nil
+      uri = '/docencia/estudiantes'+rut.to_s+'/asignaturas'
+      respuesta = HTTParty.get(URL+uri, basic_auth: AUTH)
+      case respuesta.response.code.to_i
+        when 200
+          anioarray = []
+          respuesta.each do |actual|
+            anioarray << actual['curso']['anio'].to_i
+          end
+          anio = mayorAnio(anioarray)
+          semestreArray=[]
+          respuesta.each do |actual|
+            if actual['curso']['anio']== anio
+              semestreArray<<actual['curso']['semestre']
+            end
+          end
+          semestre = ultimoSemestre(semestreArray)
+          asignaturas=[]
+          respuesta.each do |actual|
+            if actual['curso']['anio']== anio && actual['curso']['semestre']== semestre
+              asignaturas<<actual['curso']
+            end
+          end
+
+      end
+
+    end
+  end
 
 end

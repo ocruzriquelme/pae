@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  estado: MyString
+  nota: 9.99
+  semestre: 1
+  anio: 1
+  veces: 1
+  asignatura_id: 1
+  estudiante_id: 1
+
+two:
+  estado: MyString
+  nota: 9.99
+  semestre: 1
+  anio: 1
+  veces: 1
+  asignatura_id: 1
+  estudiante_id: 1

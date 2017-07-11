@@ -425,7 +425,7 @@ Comuna.create(nombre: 'Vitacura',provincia_id: ( Provincia.find_by_nombre('Santi
 
 
 
-Priorizacion.create(nombre: 'No priorizado ')
+Priorizacion.create(nombre: 'No priorizado')
 Priorizacion.create(nombre: 'Priorizacion 1 ')
 Priorizacion.create(nombre: 'Priorizacion 2 ')
 Priorizacion.create(nombre: 'Priorizacion 3 ')
