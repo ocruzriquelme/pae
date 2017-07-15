@@ -8,5 +8,7 @@ class AddForeignToComunaProvincia < ActiveRecord::Migration[5.0]
 
     add_column :comunas, :provincia_id, :integer
     add_foreign_key :comunas, :provincias, column: :provincia_id, primary_key: :id
+
+
   end
 end

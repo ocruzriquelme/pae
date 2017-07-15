@@ -1,4 +1,4 @@
-<%= simple_form_for @grupo_tutores, url: nuevo_grupo_tutor_url, as: 'nuevo_grupo_tutor'  do |f| %>
+<%= form_for @grupo_tutores, url: nuevo_grupo_tutor_url, as: 'nuevo_grupo_tutor'  do |f| %>
         <% if @grupo_tutores.errors.any? %>
                <%= pluralize(@grupo_tutores.errors.count, "error") %>
 
@@ -13,7 +13,8 @@
       </p>
 
 
-        <%= render 'tutorados'%>
+
+        <%= render 'tutorados' %>
 
         <%= f.submit %>
     <% end %>

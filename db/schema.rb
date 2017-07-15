@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170711180010) do
+ActiveRecord::Schema.define(version: 20170715010505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20170711180010) do
 
   create_table "asignatura_cursadas", force: :cascade do |t|
     t.string   "estado"
-    t.decimal  "nota"
+    t.float    "nota"
     t.integer  "semestre"
     t.integer  "anio"
     t.integer  "veces"
@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(version: 20170711180010) do
     t.string   "apellidos"
     t.string   "email"
     t.string   "direccion"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.integer  "rol_id"
     t.integer  "comuna_id"
     t.integer  "carrera_id"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20170711180010) do
     t.integer  "edad"
     t.integer  "ingreso"
     t.integer  "priorizacion_id"
+    t.integer  "asignatura_cursada_id"
   end
 
   create_table "fichas", force: :cascade do |t|
@@ -181,7 +182,9 @@ ActiveRecord::Schema.define(version: 20170711180010) do
     t.integer  "rol_usuario_id"
   end
 
+  add_foreign_key "asignatura_cursadas", "asignaturas"
   add_foreign_key "comunas", "provincias"
+  add_foreign_key "estudiantes", "asignatura_cursadas"
   add_foreign_key "estudiantes", "carreras"
   add_foreign_key "estudiantes", "comunas"
   add_foreign_key "estudiantes", "priorizaciones", column: "priorizacion_id"

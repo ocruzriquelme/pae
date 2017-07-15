@@ -55,8 +55,8 @@ class SepaApi
   def mayorAnio(anio)
     mayor = -9999
     for i in 0..anio.size
-      if mayor < anio[i]
-        mayor = anio[i]
+      if mayor < anio[i].to_i
+        mayor = anio[i].to_i
       end
     end
     return mayor
@@ -65,8 +65,8 @@ class SepaApi
   def ultimoSemestre (semestre)
     mayor = -9999
     for i in 0..semestre.size
-      if mayor < semestre[i]
-        mayor = semestre[i]
+      if mayor < semestre[i].to_i
+        mayor = semestre[i].to_i
       end
     end
     return mayor
@@ -75,7 +75,7 @@ class SepaApi
   def asignaturasUltimoSemestre(rut)
     salida = []
     if rut!= nil
-      uri = '/docencia/estudiantes'+rut.to_s+'/asignaturas'
+      uri = '/docencia/estudiantes/'+rut.to_s+'/asignaturas'
       respuesta = HTTParty.get(URL+uri, basic_auth: AUTH)
       case respuesta.response.code.to_i
         when 200
@@ -94,12 +94,38 @@ class SepaApi
           asignaturas=[]
           respuesta.each do |actual|
             if actual['curso']['anio']== anio && actual['curso']['semestre']== semestre
-              asignaturas<<actual['curso']
+              asignaturas<<actual
+
             end
           end
-
+          asignaturas.each do |asignatura|
+            nombreAsignatura = asignatura['curso']['asignatura']['nombre']
+            if Asignatura.find_by_nombre(nombreAsignatura) == nil
+              Asignatura.create(nombre: nombreAsignatura)
+            end
+            estadoAsignatura = asignatura['estado']
+            notaAsignatura = asignatura['nota']
+            semestreAsignatura = asignatura['curso']['semestre']
+            anioASignatura = asignatura['curso']['anio']
+            estudiante_id = (Estudiante.find_by_rut(rut)).id
+            asignatura_id = (Asignatura.find_by_nombre(nombreAsignatura)).id
+            cantidad = 0
+            respuesta.each do |actual|
+              if actual['curso']['asignatura']['nombre']== nombreAsignatura
+                cantidad+=1
+              end
+            end
+            veces = cantidad
+            if AsignaturaCursada.find_by_asignatura_id(asignatura_id) == nil
+              AsignaturaCursada.create(estado: estadoAsignatura, nota: notaAsignatura,
+                                       semestre: semestreAsignatura, anio: anioASignatura, veces: veces, estudiante_id: estudiante_id, asignatura_id: asignatura_id)
+            else
+              asignaturaDB =  AsignaturaCursada.find_by_asignatura_id(asignatura_id)
+              asignaturaDB.save(estado: estadoAsignatura, nota: notaAsignatura,
+                                       semestre: semestreAsignatura, anio: anioASignatura, veces: veces, estudiante_id: estudiante_id, asignatura_id: asignatura_id)
+            end
+          end
       end
-
     end
   end
 

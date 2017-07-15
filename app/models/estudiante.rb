@@ -1,6 +1,7 @@
 class Estudiante < ApplicationRecord
 
   has_many :informe
+  has_many :asignatura_cursadas
   belongs_to :rol
   has_many :grupo_tutorias
   belongs_to :carrera

@@ -9,9 +9,10 @@ class GrupoTutoresController < ApplicationController
   end
   def crear
     @grupo_tutores = GrupoTutor.new(grupo_tutores_params)
+
     respond_to do |format|
       if @grupo_tutores.save
-        format.html { redirect_to grupotutores_path@grupo_tutores, notice: 'Grupo creado exitosamente' }
+        format.html { redirect_to @grupo_tutores, notice: 'Grupo creado exitosamente' }
       else
         format.html { render action: 'nuevo' }
       end
@@ -48,7 +49,7 @@ class GrupoTutoresController < ApplicationController
 
   def grupo_tutores_params
     params.require(:grupo_tutor).permit(:estudiante_id,
-                                        grupo_tutorados_attributes: [:id, :estudiante_id, :grupo_tutor_id, :_destroy])
+                                        grupo_tutorados_attributes: [:id, :estudiante_id, :grupo_tutor_id, :done, :_destroy])
   end
 
 end
