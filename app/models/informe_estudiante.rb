@@ -1,0 +1,3 @@
+class InformeEstudiante < ApplicationRecord
+
+end

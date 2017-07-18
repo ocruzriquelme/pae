@@ -1,15 +1,11 @@
 <% @grupo_tutorados  = GrupoTutorado.new  %>
 <%= simple_form_for @grupo_tutorados, url: nuevo_grupo_tutor_url, as: 'nuevo_grupo_tutor'  do |f| %>
-    <% if @grupo_tutorados.errors.any? %>
-        <%= pluralize(@grupo_tutorados.errors.count, "error") %>
+    <%= f.error_notification %>
 
-        <% @grupo_tutorados.errors.full_messages.each do |actual| %>
-            <%= actual %>
-        <% end %>
-    <% end %>
     <p>
       <%= f.label :tutorados %><br>
-      <%= f.select('estudiante_id', Estudiante.where(rol_id: (Rol.find_by_nombres('Tutorado')).id).collect {|c| [c.nombres, c.id]}) %>
+      <%= f.select('grupo_tutor_id', Estudiante.where(rol_id: (Rol.find_by_nombres('Tutorado')).id).collect {|c| [c.nombres, c.id]}, { include_blank: true }, {class: 'chosen-select'}) %>
     </p>
+
 
 <% end %>

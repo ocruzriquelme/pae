@@ -1,12 +1,22 @@
 Rails.application.routes.draw do
-
   devise_for :admins
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'estudiantes#index'
 
 
+  get 'preguntas/', to: 'preguntas#index', as: 'preguntas'
+  get 'preguntas/nuevo'
+  get 'preguntas/mostrar'
+  get 'preguntas/update'
+  get 'preguntas/crear'
+
+
+
+
+
   get 'estudiantes/', to: 'estudiantes#index', as: 'estudiantes'
   get 'estudiantes/nuevo/', to: 'estudiantes#nuevo', as: 'nuevo_estudiante'
+  get 'estudiantes/:id/asignaturas', to: 'estudiantes#mostrarasignatura', as: 'asignaturas_estudiantes'
   get 'estudiantes/:id',to: 'estudiantes#mostrar', as: 'estudiante'
   get 'estudiantes/:id/editar', to: 'estudiantes#editar', as: 'editar_estudiante'
   post 'estudiantes/', to: 'estudiantes#crear'
@@ -26,6 +36,24 @@ Rails.application.routes.draw do
   delete 'grupotutores/:id', to: 'grupo_tutores#eliminar'
 
   get 'grupotutorados/', to: 'estudiantes#tutorados', as: 'tutorados'
+
+  get 'grupotutorados/', to: 'grupo_tutorados#index', as: 'grupo_tutorados_index'
+  get 'grupotutores/:id/tutorados/nuevo/', to: 'grupo_tutorados#nuevo', as: 'nuevo_grupo_tutorado'
+  get 'grupotutorados/:id',to: 'grupo_tutorados#mostrar', as: 'grupo_tutorado'
+  #get 'grupotutorados/:id/editar', to: 'grupo_tutorados#editar', as: 'editar_grupo_tutorado'
+  post 'grupotutorados', to: 'grupo_tutorados#crear', as: 'agregar_tutorado_grupo'
+  put 'grupotutorados/:id' , to: 'grupo_tutorados#update'
+  patch 'grupotutorados/:id' ,to: 'grupo_tutorados#update'
+  delete 'grupotutorados/:id', to: 'grupo_tutorados#eliminar'
+
+  get 'preguntainforme/', to: 'pregunta_informe#index', as: 'informes'
+  get 'preguntainforme/nuevo/', to: 'pregunta_informe#nuevo', as: 'nuevo_informe_pregunta'
+  get 'preguntainforme/:id',to: 'pregunta_informe#mostrar', as: 'informe'
+  #get 'grupotutorados/:id/editar', to: 'grupo_tutorados#editar', as: 'editar_grupo_tutorado'
+  post 'preguntainforme', to: 'pregunta_informe#crear'
+  put 'preguntainforme/:id' , to: 'pregunta_informe#update'
+  patch 'preguntainforme/:id' ,to: 'pregunta_informe#update'
+  delete 'preguntainforme/:id', to: 'pregunta_informe#eliminar'
 
 
 

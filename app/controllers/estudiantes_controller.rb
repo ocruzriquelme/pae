@@ -1,13 +1,14 @@
 require 'sepa_api'
 
 class EstudiantesController < ApplicationController
-  before_action :set_estudiante,only:[:mostrar, :editar, :eliminar, :update]
+  before_action :set_estudiante, only: [:mostrar, :editar, :eliminar, :update, :mostrarasignatura]
   before_action :authenticate_admin!
 
   def index
     @index = 'index'
     @estudiantes = Estudiante.all
   end
+
   def crear
     rut = params['estudiante']['rut']
     sepa = SepaApi.new()
@@ -18,20 +19,20 @@ class EstudiantesController < ApplicationController
       if Estudiante.find_by_rut(@estudiante.rut) == nil
         respond_to do |format|
           if @estudiante.save
-            format.html{redirect_to estudiante_path(@estudiante), notice: 'Guardado exitosamente en base de datos'}
+            format.html {redirect_to estudiante_path(@estudiante), notice: 'Guardado exitosamente en base de datos'}
           else
-            format.html{render :nuevo}
+            format.html {render :nuevo}
           end
         end
       else
         respond_to do |format|
           @estudiante = Estudiante.find_by_rut(@estudiante.rut)
-          format.html{redirect_to estudiante_path(@estudiante), notice: 'Ya existe dicho estudiante'}
+          format.html {redirect_to estudiante_path(@estudiante), notice: 'Ya existe dicho estudiante'}
         end
       end
     else
       respond_to do |format|
-        format.html{redirect_to nuevo_estudiante_path(@estudiante), notice: 'Estudiante no encontrado en dirdoc'}
+        format.html {redirect_to nuevo_estudiante_path(@estudiante), notice: 'Estudiante no encontrado en dirdoc'}
       end
     end
   end
@@ -47,13 +48,14 @@ class EstudiantesController < ApplicationController
   def eliminar
     @estudiante.destroy
     respond_to do |format|
-      format.html {redirect_to @estudiante, notice:'Se ha eliminado al estudiante'}
+      format.html {redirect_to @estudiante, notice: 'Se ha eliminado al estudiante'}
     end
   end
+
   def update
     respond_to do |format|
       if @estudiante.update(estudiante_params)
-        format.html {redirect_to @estudiante, notice:'Se ha editado el estudiante'}
+        format.html {redirect_to @estudiante, notice: 'Se ha editado el estudiante'}
       else
         format.html {render :editar}
       end
@@ -63,11 +65,12 @@ class EstudiantesController < ApplicationController
   def nuevo
     @estudiante = Estudiante.new
   end
+
   def tutores
     @index = 'no index'
     @estudiantes = Estudiante.where(rol_id: (Rol.find_by_nombres('Tutor')).id).paginate(:page => params[:page], :per_page => 12)
     respond_to do |format|
-      format.html{ render :template => "/estudiantes/index"}
+      format.html {render :template => "/estudiantes/index"}
     end
   end
 
@@ -75,8 +78,17 @@ class EstudiantesController < ApplicationController
     @index = 'no index'
     @estudiantes = Estudiante.where(rol_id: (Rol.find_by_nombres('Tutorado')).id).paginate(:page => params[:page], :per_page => 12)
     respond_to do |format|
-      format.html{ render :template => "/estudiantes/index"}
+      format.html {render :template => "/estudiantes/index"}
     end
+  end
+
+  def mostrarasignatura
+   # sepa = SepaApi.new()
+
+#    sepa.asignaturasUltimoSemestre(@estudiante.rut)
+
+    @estudiante
+
   end
 
   private
@@ -85,7 +97,7 @@ class EstudiantesController < ApplicationController
   end
 
   def estudiante_params
-    params.require(:estudiante).permit(:rut, :nombres, :apellidos, :email, :direccion,:priorizacion_id, :rol_id, :comuna_id, :carrera_id, :fecha_nacimiento,  :edad)
+    params.require(:estudiante).permit(:rut, :nombres, :apellidos, :email, :direccion, :priorizacion_id, :rol_id, :comuna_id, :carrera_id, :fecha_nacimiento, :edad)
   end
 
 

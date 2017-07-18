@@ -5,18 +5,15 @@ class InformesController < ApplicationController
   end
 
   def mostrar
-    @informe = Informe.find(params)
+    @informe = Informe.find(params[:id])
   end
 
   def editar
-    @informe = Informe.find(params)
+    @informe = Informe.find(params[:id])
   end
+
   def nuevo
     @informe = Informe.new
-    3.times do
-      pregunta = @informes.preguntas.build
-      4.times { pregunta.respuestas.build }
-    end
   end
 
   def update
@@ -35,4 +32,14 @@ class InformesController < ApplicationController
       format.html {redirect_to @informe, notice:'Se ha eliminado el informe'}
     end
   end
+
+  private
+  def set_informe
+    @pregunta = Pregunta.find(params[:id])
+  end
+
+  def informe_params
+    params.require(:informe).permit(:nombre)
+  end
+
 end

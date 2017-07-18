@@ -16,4 +16,5 @@
 //= require bootstrap
 //= require adminlte
 //= require cocoon
+//= require chosen-jquery
 //= require_tree .

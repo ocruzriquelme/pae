@@ -1,0 +1,6 @@
+tutor<%= @grupo_tutor.estudiante.nombres %>
+
+tutorad
+<% @grupo_tutor.grupo_tutorados.each do |actual| %>
+    <br><%=actual.estudiante.nombres%>
+<% end %>

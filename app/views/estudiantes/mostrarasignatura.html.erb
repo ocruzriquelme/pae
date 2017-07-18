@@ -1,0 +1,9 @@
+asignaturas
+<br>año i weas <%= @estudiante.asignatura_cursadas[-1].anio %><br>
+semestre qlo <%= @estudiante.asignatura_cursadas[0].semestre%><br>
+<% @estudiante.asignatura_cursadas.each do |asignatura| %>
+    <%= asignatura.asignatura.nombre %><br>
+    <%= asignatura.nota %><br>
+    <%= asignatura.estado %><br>
+
+<% end %>

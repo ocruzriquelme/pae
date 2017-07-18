@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170715010505) do
+ActiveRecord::Schema.define(version: 20170715214119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,8 +74,8 @@ ActiveRecord::Schema.define(version: 20170715010505) do
     t.string   "apellidos"
     t.string   "email"
     t.string   "direccion"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "rol_id"
     t.integer  "comuna_id"
     t.integer  "carrera_id"
@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(version: 20170715010505) do
     t.integer  "edad"
     t.integer  "ingreso"
     t.integer  "priorizacion_id"
-    t.integer  "asignatura_cursada_id"
   end
 
   create_table "fichas", force: :cascade do |t|
@@ -105,12 +104,19 @@ ActiveRecord::Schema.define(version: 20170715010505) do
     t.datetime "updated_at",    null: false
   end
 
-  create_table "informes", force: :cascade do |t|
+  create_table "informe_estudiantes", force: :cascade do |t|
     t.integer  "estado"
-    t.integer  "fecha"
+    t.date     "fecha"
     t.integer  "estudiante_id"
+    t.integer  "informe_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "informes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "nombre"
   end
 
   create_table "pregunta_informes", force: :cascade do |t|
@@ -184,7 +190,6 @@ ActiveRecord::Schema.define(version: 20170715010505) do
 
   add_foreign_key "asignatura_cursadas", "asignaturas"
   add_foreign_key "comunas", "provincias"
-  add_foreign_key "estudiantes", "asignatura_cursadas"
   add_foreign_key "estudiantes", "carreras"
   add_foreign_key "estudiantes", "comunas"
   add_foreign_key "estudiantes", "priorizaciones", column: "priorizacion_id"
@@ -192,7 +197,8 @@ ActiveRecord::Schema.define(version: 20170715010505) do
   add_foreign_key "grupo_tutorados", "estudiantes"
   add_foreign_key "grupo_tutorados", "grupo_tutores", column: "grupo_tutor_id"
   add_foreign_key "grupo_tutores", "estudiantes"
-  add_foreign_key "informes", "estudiantes"
+  add_foreign_key "informe_estudiantes", "estudiantes"
+  add_foreign_key "informe_estudiantes", "informes"
   add_foreign_key "pregunta_informes", "informes"
   add_foreign_key "pregunta_informes", "preguntas"
   add_foreign_key "provincias", "regiones", column: "region_id"

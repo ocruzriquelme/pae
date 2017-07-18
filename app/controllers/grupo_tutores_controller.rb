@@ -7,29 +7,32 @@ class GrupoTutoresController < ApplicationController
   def nuevo
     @grupo_tutores = GrupoTutor.new
   end
-  def crear
-    @grupo_tutores = GrupoTutor.new(grupo_tutores_params)
 
+  def crear
+    estudiante_id=  params()[:nuevo_grupo_tutor][:estudiante_id] # Tutor
+    p estudiante_id
+    grupo_tutorado = GrupoTutor.create(estudiante_id: estudiante_id)
     respond_to do |format|
-      if @grupo_tutores.save
-        format.html { redirect_to @grupo_tutores, notice: 'Grupo creado exitosamente' }
-      else
-        format.html { render action: 'nuevo' }
-      end
+      format.html{redirect_to nuevo_grupo_tutorado_path(grupo_tutorado.id), notice: 'Grupo creado'}
     end
+
   end
+
   def mostrar
     @grupo_tutores = GrupoTutor.find(params[:id])
   end
+
   def editar
     @grupo_tutores = GrupoTutor.find(params[:id])
   end
 
   def eliminar
-    @grupo_tutores.destroy
+    @grupo_tutores.destroy(grupo_tutores_params)
     respond_to do |format|
       format.html {redirect_to @grupo_tutores, notice:'Se ha eliminado el grupo'}
+    end
   end
+
   def update
     respond_to do |format|
       if @grupo_tutores.update(estudiante_params)
@@ -40,7 +43,6 @@ class GrupoTutoresController < ApplicationController
     end
   end
 
-  end
 
   private
   def set_grupo_tutores

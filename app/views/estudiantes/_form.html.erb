@@ -1,4 +1,4 @@
-<%= form_for(@estudiante, :html => {:role => 'form'}) do |f| %>
+<%= simple_form_for(@estudiante, :html => {:role => 'form'}) do |f| %>
     <% if @estudiante.errors.any? %>
         <%= pluralize(@estudiante.errors.count, "error") %>
 
@@ -30,10 +30,11 @@
       <%= f.label :ingreso%> <br>
       <%= f.text_field :ingreso%>
     </p>
-    <p>
-      <%= f.label :edad%> <br>
-      <%= f.text_field :edad%>
-    </p>
+    <div class="field">
+      <%= f.input :edad, collection: 17..60, prompt: "Selecciona Edad", selected: 17 %>
+    </div>
+
+
     <p>
       <%= f.label :fecha_nacimiento%> <br>
       <%= f.text_field :fecha_nacimiento%>
@@ -52,5 +53,6 @@
       <%= f.select('rol_id', Rol.all.collect { |c| [c.nombres, c.id] }) %>
     </p>
 
-    <%= f.submit :Actualizar, class: 'btn btn-info' %>
+
+    <%= f.button :submit, "Actualizar", class: "my-button" %>
 <% end %>
