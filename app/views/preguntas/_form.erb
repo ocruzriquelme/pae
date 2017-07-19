@@ -1,0 +1,21 @@
+<h1>Ingresa Preguntas</h1>
+
+
+<%= form_for(@pregunta, :html => {:role => 'form'}) do |f| %>
+    <% if @pregunta.errors.any? %>
+        <%= pluralize(@pregunta.errors.count, "error") %>
+
+        <% @pregunta.errors.full_messages.each do |actual| %>
+            <%= actual %>
+        <% end %>
+    <% end %>
+
+
+<p>
+  <%= f.label :pregunta %> <br>
+  <%= f.text_field :pregunta %>
+</p>
+
+<%= f.submit %> <br>
+
+<% end %>

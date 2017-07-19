@@ -1,17 +1,18 @@
 class PreguntaInformesController < ApplicationController
 
   def nuevo
-    @preguntas = Pregunta.new(informe_id: params[:id])
-    @informes = Informe.find(params[:id])
+
+    @informe = Informe.find(params[:id])
+    @pregunta_informe = PreguntaInforme.new(informe_id: @informe.id)
   end
 
   def crear
     informe_id = params[:nuevo_informe_pregunta][:informe_id]
-    preguntas_id = params[:nuevo_informe_pregunta][:preguntas_id]
+    preguntas_id = params[:nuevo_informe_pregunta][:pregunta_id]
 
     preguntas_id.each do |preg|
       if !preguntas_id.empty?
-        Pregunta.create(informe_id: informe_id, preguntas_id: preg)
+        PreguntaInforme.create(informe_id: informe_id, pregunta_id: preg)
       end
     end
 

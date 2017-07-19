@@ -8,14 +8,28 @@ Rails.application.routes.draw do
   root 'estudiantes#index'
 
 
+
   get 'informes/', to: 'informes#index', as: 'informes'
+
+
+  get 'preguntas/', to: 'pregunta#nuevo', as: 'preguntas'
+  get 'preguntas/nuevo', to: 'pregunta#nuevo', as: 'nueva_pregunta'
+  get 'preguntas/:id',to: 'pregunta#mostrar', as: 'pregunta'
+  post 'preguntas', to: 'pregunta#crear'
+  put 'preguntas/:id' , to: 'pregunta#update'
+  patch 'preguntas/:id' ,to: 'pregunta#update'
+  delete 'preguntas/:id', to: 'pregunta#eliminar'
+
+
+
+
+  #get 'pregunta/', to: 'pregunta#index', as: 'pregunta'
   get 'informes/nuevo', to: 'informes#nuevo', as: 'nuevo_informe'
   get 'informes/:id',to: 'informes#mostrar', as: 'informe'
   post 'informes', to: 'informes#crear'
   put 'informes/:id' , to: 'informes#update'
   patch 'informes/:id' ,to: 'informes#update'
   delete 'informes/:id', to: 'informes#eliminar'
-
 
 
 
@@ -30,14 +44,14 @@ Rails.application.routes.draw do
   patch 'estudiantes/:id' ,to: 'estudiantes#update'
   delete 'estudiantes/:id', to: 'estudiantes#eliminar'
 
-  get 'preguntainforme/', to: 'pregunta_informe#index', as: 'pregunta_informes'
-  get 'preguntainforme/nuevo/', to: 'pregunta_informe#nuevo', as: 'nuevo_informe_pregunta'
-  get 'preguntainforme/:id',to: 'pregunta_informe#mostrar', as: 'pregunta_informe'
+  get 'preguntainforme/', to: 'pregunta_informes#index', as: 'pregunta_informes'
+  get 'preguntainforme/nuevo/:id/pregunta', to: 'pregunta_informes#nuevo', as: 'nuevo_informe_pregunta'
+  get 'preguntainforme/:id',to: 'pregunta_informes#mostrar', as: 'pregunta_informe'
   #get 'grupotutorados/:id/editar', to: 'grupo_tutorados#editar', as: 'editar_grupo_tutorado'
-  post 'preguntainforme', to: 'pregunta_informe#crear'
-  put 'preguntainforme/:id' , to: 'pregunta_informe#update'
-  patch 'preguntainforme/:id' ,to: 'pregunta_informe#update'
-  delete 'preguntainforme/:id', to: 'pregunta_informe#eliminar'
+  post 'preguntainforme', to: 'pregunta_informes#crear', as: 'crear_informe_nuevo'
+  put 'preguntainforme/:id' , to: 'pregunta_informes#update'
+  patch 'preguntainforme/:id' ,to: 'pregunta_informes#update'
+  delete 'preguntainforme/:id', to: 'pregunta_informes#eliminar'
 
 
   get 'grupotutores/', to: 'estudiantes#tutores', as: 'tutores'

@@ -1,16 +1,11 @@
-<%= simple_form_for @pregunta_informe, url: pregunta_informe_url, as: 'nuevo_informe_pregunta'  do |f| %>
+<%= simple_form_for @pregunta_informe, url: crear_informe_nuevo_url, as: 'nuevo_informe_pregunta'  do |f| %>
     <%= f.error_notification %>
 
-
+    <%= f.hidden_field(:informe_id, :value => @informe.id) %>
     <p>
-      <%= f.label :nombre %><br>
-      <%= f.text_field :nombre%>
+      <%= f.label :preguntas %><br>
+      <%= f.select('pregunta_id', Pregunta.all().collect {|c| [c.pregunta, c.id]}, { include_blank: true }, {class: 'chosen-select', multiple:true}) %>
     </p>
 
-
     <%= f.button :submit, "Guardar", class: "my-button" %>
-
-
-
-
 <% end %>

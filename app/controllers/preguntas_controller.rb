@@ -1,6 +1,4 @@
 class PreguntasController < ApplicationController
-  before_action :set_pregunta
-
   def index
     @pregunta = Pregunta.all
   end

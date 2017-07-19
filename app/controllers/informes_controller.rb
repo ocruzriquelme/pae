@@ -7,13 +7,13 @@ class InformesController < ApplicationController
   def nuevo
     @informe = Informe.new
   end
-I
-  def crear
-    informe_id = params()[:nuevo_informe][:informe_id]
 
-    informe = Informe.create(nombre: informe_id)
+  def crear
+    nombre = params()[:nuevo_informe][:nombre]
+
+    informe = Informe.create(nombre: nombre)
     respond_to do |format|
-      format.html{redirect_to informes_path(informe.id), notice: 'Informe Creado'}
+      format.html{redirect_to nuevo_informe_pregunta_path(informe.id), notice: 'Informe Creado'}
     end
   end
 
