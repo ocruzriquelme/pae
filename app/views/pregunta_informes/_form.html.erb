@@ -1,0 +1,16 @@
+<%= simple_form_for @pregunta_informe, url: pregunta_informe_url, as: 'nuevo_informe_pregunta'  do |f| %>
+    <%= f.error_notification %>
+
+
+    <p>
+      <%= f.label :nombre %><br>
+      <%= f.text_field :nombre%>
+    </p>
+
+
+    <%= f.button :submit, "Guardar", class: "my-button" %>
+
+
+
+
+<% end %>

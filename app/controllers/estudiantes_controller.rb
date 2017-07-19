@@ -83,9 +83,10 @@ class EstudiantesController < ApplicationController
   end
 
   def mostrarasignatura
-   # sepa = SepaApi.new()
 
-#    sepa.asignaturasUltimoSemestre(@estudiante.rut)
+    sepa = SepaApi.new()
+
+    sepa.asignaturasUltimoSemestre(@estudiante.rut)
 
     @estudiante
 

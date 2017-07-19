@@ -1,3 +1,3 @@
 class Asignatura < ApplicationRecord
-  belongs_to :asignatura_cursada
+  has_many :asignatura_cursadas
 end

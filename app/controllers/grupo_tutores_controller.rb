@@ -1,4 +1,5 @@
 class GrupoTutoresController < ApplicationController
+  before_action :authenticate_admin!
 
   def index
     @grupo_tutores = GrupoTutor.all

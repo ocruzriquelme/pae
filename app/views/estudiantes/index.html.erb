@@ -1,5 +1,11 @@
-<h3> <%= link_to 'Crear estudiante', nuevo_estudiante_path, class:'btn btn-primary btn-md' %> </h3>
+<div class = "row">
+    <div class="col-sm-4"><h3> <%= link_to 'Crear estudiante', nuevo_estudiante_path, class:'btn btn-primary btn-md' %> </h3>
+    </div>
+    <div class="col-sm-4"><h3> <%= link_to 'Crear Grupo Tutor', nuevo_grupo_tutor_path, class:'btn btn-primary btn-md' %> </h3>
+    </div>
 
+
+</div>
 <table class="table">
   <thead>
   <tr>
@@ -7,7 +13,8 @@
     <th>Apellidos</th>
     <th>Priorizacion</th>
     <th>Mostrar</th>
-    <th>editar</th>
+    <th>Editar</th>
+    <th>Asignaturas</th>
   </tr>
   </thead>
   <tbody>
@@ -22,6 +29,7 @@
         </td>
         <td><%= link_to 'Mostrar', estudiante_url(estudiante) %></td>
         <td><%= link_to 'Editar', editar_estudiante_path(estudiante) %></td>
+        <td><%= link_to 'Asignatura', asignaturas_estudiantes_path(estudiante) %></td>
       </tr>
   <% end %>
   </tbody>

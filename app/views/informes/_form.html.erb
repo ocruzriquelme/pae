@@ -1,12 +1,11 @@
-<%= form_for @informe do |f| %>
-    <%= f.error_messages %>
+<%= simple_form_for @informes, url: informes_url, as: 'nuevo_informe'  do |f| %>
+    <%= f.error_notification %>
+
     <p>
-      <%= f.label :nombres %><br />
-      <%= f.text_field :nombres %>
+      <%= f.label :nombre %> <br>
+      <%= f.text_field :nombre %>
     </p>
-    <%= f.fields_for :preguntas do |builder| %>
-        <%= render 'Campos de preguntas', :f => builder %>
-    <% end %>
+
     <p><%= f.submit "Enviar" %></p>
 <% end %>
 

@@ -1,5 +1,5 @@
 class PreguntaInforme < ApplicationRecord
-  belongs_to :preguntas
-  belongs_to :informes
+  belongs_to :pregunta
+  belongs_to :informe
 
 end

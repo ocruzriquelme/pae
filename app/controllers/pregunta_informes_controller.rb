@@ -1,56 +1,30 @@
 class PreguntaInformesController < ApplicationController
 
-  def index
-    @informe = Informe.all
-  end
-
   def nuevo
-    @informe = Informe.new
+    @preguntas = Pregunta.new(informe_id: params[:id])
+    @informes = Informe.find(params[:id])
   end
-
 
   def crear
-    informe_id = params[:nuevo_informe][:informe_id]
+    informe_id = params[:nuevo_informe_pregunta][:informe_id]
+    preguntas_id = params[:nuevo_informe_pregunta][:preguntas_id]
 
-    informe = Informe.create(informe_id: informe_id)
+    preguntas_id.each do |preg|
+      if !preguntas_id.empty?
+        Pregunta.create(informe_id: informe_id, preguntas_id: preg)
+      end
+    end
+
     respond_to do |format|
-      format.html{redirect_to informe_path(informe.id), notice: 'Informe Creado'}
+      format.html{redirect_to preguntainforme_path(informe_id), notice: 'Creado'}
     end
   end
 
   def mostrar
+
     @informe = Informe.find(params[:id])
   end
 
-  def editar
-    @informe = Informe.find(params[:id])
-  end
 
-  def eliminar
-    @informe.destroy(pregunta_informe_params)
-    respond_to do |format|
-      format.html {redirect_to @informe, notice:'Se el informe'}
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @informe.update(pregunta_informe_params)
-        format.html {redirect_to @informe, notice:'Se ha editado el informe'}
-      else
-        format.html {render :editar}
-      end
-    end
-  end
-
-  private
-  def set_pregunta_informe
-    @informe = Informe.find(params[:id])
-  end
-
-  def pregunta_informe_params
-    params.require(:pregunta_informe).permit(:informe_id,
-                                        preguntas_attributes: [:id, :pregunta, :done, :_destroy])
-  end
 
 end

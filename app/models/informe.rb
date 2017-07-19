@@ -1,8 +1,6 @@
 class Informe < ApplicationRecord
-  belongs_to :estudiante
-  has_many :preguntas
-  accepts_nested_attributes_for :preguntas
-  validates :estado, numericality: true
-  validates :fecha, numericality: true
-  validates :tutor, presence: true
+    has_many :informe_estudiantes
+    has_many :pregunta_informes
+  accepts_nested_attributes_for :pregunta_informes
+  validates :nombre, presence: true
 end
