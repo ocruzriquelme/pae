@@ -1,14 +1,13 @@
 class InformesController < ApplicationController
 
   def index
-    @informes = Informe.all
+    @informe = Informe.all
   end
 
   def nuevo
-    @informes = Informe.new
+    @informe = Informe.new
   end
-
-
+I
   def crear
     informe_id = params()[:nuevo_informe][:informe_id]
 
@@ -27,7 +26,7 @@ class InformesController < ApplicationController
   end
 
   def eliminar
-    @informes.destroy(pregunta_informe_params)
+    @informe.destroy(pregunta_informe_params)
     respond_to do |format|
       format.html {redirect_to @pregunta_informe, notice:'Se el informe'}
     end
@@ -45,7 +44,7 @@ class InformesController < ApplicationController
 
   private
   def set_informe
-    @informes = Informe.find(params[:id])
+    @informe = Informe.find(params[:id])
   end
 
   def informe_params

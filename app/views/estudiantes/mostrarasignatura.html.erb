@@ -1,12 +1,12 @@
-<h2>Estudiante: <%= @estudiante.nombres %>
+<h1>Estudiante: <%= @estudiante.nombres %>
 <% if @estudiante.asignatura_cursadas ==nil %>
     <% if @estudiante.asignatura_cursadas !=nil %>
-        <span class="label label-danger">Estudiante aun no cursa su primer semestre</span>
+          <br><span class="label label-danger">Estudiante no Priorizado</span>
         Asignaturas del Año: <%= @estudiante.asignatura_cursadas[-1].anio %><br>
         Semestre n°:<%= @estudiante.asignatura_cursadas[0].semestre%><br>
     <% end  %>
 <% end %>
-</h2>
+</h1>
 <table class="table">
   <thead>
   <tr>
@@ -35,5 +35,5 @@
 
   </tbody>
 </table>
-
+<%= link_to 'Volver', root_path, class:'btn btn-info' %><br>
 

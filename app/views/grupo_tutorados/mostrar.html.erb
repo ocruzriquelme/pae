@@ -1,6 +1,14 @@
-tutor<%= @grupo_tutor.estudiante.nombres %>
+<h1>Grupo de <%= @grupo_tutor.estudiante.nombres %></h1>
+<table class="table table-bordered table-striped">
+  <tbody>
+<tr>
+  <td><dt>TUTORADOS:</dt>
 
-tutorad
 <% @grupo_tutor.grupo_tutorados.each do |actual| %>
     <br><%=actual.estudiante.nombres%>
-<% end %>
+<% end %></td>
+</tr>
+</tbody>
+</table>
+
+<%= link_to 'Volver', root_path, class:'btn btn-info' %><br>

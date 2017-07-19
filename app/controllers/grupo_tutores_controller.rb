@@ -11,7 +11,6 @@ class GrupoTutoresController < ApplicationController
 
   def crear
     estudiante_id=  params()[:nuevo_grupo_tutor][:estudiante_id] # Tutor
-    p estudiante_id
     grupo_tutorado = GrupoTutor.create(estudiante_id: estudiante_id)
     respond_to do |format|
       format.html{redirect_to nuevo_grupo_tutorado_path(grupo_tutorado.id), notice: 'Grupo creado'}

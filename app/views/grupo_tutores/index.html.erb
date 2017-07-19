@@ -10,7 +10,8 @@
   </tr>
   </thead>
   <tbody>
-  <% @grupo_tutores.each do |grupotutores| %>
+
+  <% @grupo_tutor.estudiante.each do |grupotutores| %>
       <tr>
         <td><%= grupotutores.nombres %></td>
         <td><%= grupotutores.apellidos %></td>
