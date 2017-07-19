@@ -1,9 +1,39 @@
-asignaturas
-<br>año i weas <%= @estudiante.asignatura_cursadas[-1].anio %><br>
-semestre qlo <%= @estudiante.asignatura_cursadas[0].semestre%><br>
-<% @estudiante.asignatura_cursadas.each do |asignatura| %>
-    <%= asignatura.asignatura.nombre %><br>
-    <%= asignatura.nota %><br>
-    <%= asignatura.estado %><br>
-
+<h2>Estudiante: <%= @estudiante.nombres %>
+<% if @estudiante.asignatura_cursadas ==nil %>
+    <% if @estudiante.asignatura_cursadas !=nil %>
+        <span class="label label-danger">Estudiante aun no cursa su primer semestre</span>
+        Asignaturas del Año: <%= @estudiante.asignatura_cursadas[-1].anio %><br>
+        Semestre n°:<%= @estudiante.asignatura_cursadas[0].semestre%><br>
+    <% end  %>
 <% end %>
+</h2>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Asignatura</th>
+    <th>Nota</th>
+    <th>Estado</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @estudiante.asignatura_cursadas.each do |asignatura| %>
+  <tr>
+    <td><%= asignatura.asignatura.nombre %></td>
+    <td><%= asignatura.nota %></td>
+    <td>
+      <% if   asignatura.nota >= 4.0 %>
+          <dt><p class="text-success">APROBADO</p></dt>
+      <% end %>
+      <% if   asignatura.nota <= 3.9 %>
+          <dt> <p class="text-warning">REPROBADO</p></dt>
+      <% end %>
+    </td>
+
+  </tr>
+  <% end %>
+
+  </tbody>
+</table>
+
+

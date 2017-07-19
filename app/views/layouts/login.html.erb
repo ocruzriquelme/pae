@@ -17,6 +17,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body >
+<div class="row">
+  <div class="col-md-4" style="background-color:#ffffff;"></div>
+  <div class="col-md-4" style="background-color:#f9f9f9;"><p align="center"><img src="../img/avatar3.png"></p></div>
+  <div class="col-md-4" style="background-color:#ffffff;"></div>
 
-<%= yield %>
+  <div class="col-md-4" style="background-color:#ffffff;"></div>
+</div>
+<div clas="container-fluid">
+
+  <div class="col-md-4" style="background-color:#ffffff;"></div>
+  <div class="col-md-4" style="background-color:#f9f9f9;">
+    <div id="login-box" class="login-box visible widget-box no-border">
+      <div class="widget-body">
+        <div class="widget-main">
+          <p align="center"> <%= yield %></p>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 </body>
