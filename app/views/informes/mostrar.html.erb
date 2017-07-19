@@ -1,7 +1,16 @@
 <h1>informeEstudiante</h1>
 
 Nombres Informe:<%= @informes.nombre %><br>
+idddd Informe:<%= @informes.pregunta_informe %><br>
 
+
+<tr>
+  <td><dt>TUTORADOS:</dt>
+
+    <% @informe.pregunta_informes.each do |actual| %>
+        <br><%=actual.pregunta.pregunta%>
+    <% end %></td>
+</tr>
 
 
 <%= link_to 'Volver', root_path, class:'btn btn-info' %><br>

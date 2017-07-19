@@ -1,9 +1,12 @@
 class PreguntasController < ApplicationController
+  before_action :set_pregunta, only: [:pregunta]
+
   def index
     @pregunta = Pregunta.all
   end
 
   def mostrar
+    @pregunta = Pregunta.find(params[:id])
   end
 
   def editar
@@ -22,15 +25,15 @@ class PreguntasController < ApplicationController
 
 
   def crear
+    @pregunta = Pregunta.new(pregunta_params)
     respond_to do |format|
       if @pregunta.save
-        format.html {redirect_to preguntas_path(@pregunta), notice: 'Se creo pregunta'}
+        format.html {redirect_to pregunta_path(@pregunta), notice: 'Se creo pregunta'}
       else
         format.html {render :nuevo}
       end
     end
   end
-
 
 
   def nuevo

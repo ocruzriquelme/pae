@@ -1,8 +1,5 @@
 <div class = "row">
-  <div class="col-sm-4"><h3> <%= link_to 'Crear informe', nuevo_informe_path, class:'btn btn-primary btn-md' %> </h3>
-  </div>
-  <div class="col-sm-4"><h3> <%= link_to 'Crear Grupo Tutor', nuevo_grupo_tutor_path, class:'btn btn-primary btn-md' %> </h3>
-  </div>
+
   <div class="col-sm-4"><h3> <%= link_to 'Crear Informe', nuevo_informe_path, class:'btn btn-primary btn-md' %> </h3>
   </div>
 
@@ -11,27 +8,19 @@
 <table class="table">
   <thead>
   <tr>
-    <th>Nombres</th>
-    <th>Apellidos</th>
-    <th>Priorizacion</th>
-    <th>Mostrar</th>
-    <th>Editar</th>
-    <th>Asignaturas</th>
+    <th>Nombres de los informes</th>
+    <th colspan="2">Acciones</th>
+
+
+
   </tr>
   </thead>
   <tbody>
   <% @informe.each do |informe| %>
       <tr>
         <td><%= informe.nombre %></td>
-        <td><%= informe.apellidos %></td>
-        <td>
-          <% if informe.priorizacion !=nil %>
-              <%= informe.priorizacion.nombre.to_s %>
-          <% end %>
-        </td>
         <td><%= link_to 'Mostrar', informe_url(informe) %></td>
-        <td><%= link_to 'Editar', editar_informe_path(informe) %></td>
-        <td><%= link_to 'Asignatura', asignaturas_informes_path(informe) %></td>
+
       </tr>
   <% end %>
   </tbody>

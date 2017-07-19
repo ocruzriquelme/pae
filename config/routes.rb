@@ -12,13 +12,9 @@ Rails.application.routes.draw do
   get 'informes/', to: 'informes#index', as: 'informes'
 
 
-  get 'preguntas/', to: 'pregunta#nuevo', as: 'preguntas'
-  get 'preguntas/nuevo', to: 'pregunta#nuevo', as: 'nueva_pregunta'
-  get 'preguntas/:id',to: 'pregunta#mostrar', as: 'pregunta'
-  post 'preguntas', to: 'pregunta#crear'
-  put 'preguntas/:id' , to: 'pregunta#update'
-  patch 'preguntas/:id' ,to: 'pregunta#update'
-  delete 'preguntas/:id', to: 'pregunta#eliminar'
+  get 'preguntas/nuevo', to: 'preguntas#nuevo', as: 'nuevo_pregunta'
+  post 'preguntas', to: 'preguntas#crear', as: 'nueva_pregunta'
+  get 'preguntas/:id', to: 'preguntas#mostrar', as: 'pregunta'
 
 
 

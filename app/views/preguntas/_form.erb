@@ -1,21 +1,11 @@
 <h1>Ingresa Preguntas</h1>
 
+<%= simple_form_for @pregunta, url: nueva_pregunta_url, as: 'pregunta'  do |f| %>
+    <%= f.error_notification %>
 
-<%= form_for(@pregunta, :html => {:role => 'form'}) do |f| %>
-    <% if @pregunta.errors.any? %>
-        <%= pluralize(@pregunta.errors.count, "error") %>
+    <p>
+      <%= f.input :pregunta%>
+    </p>
 
-        <% @pregunta.errors.full_messages.each do |actual| %>
-            <%= actual %>
-        <% end %>
-    <% end %>
-
-
-<p>
-  <%= f.label :pregunta %> <br>
-  <%= f.text_field :pregunta %>
-</p>
-
-<%= f.submit %> <br>
-
+    <%= f.button :submit, "Guardar", class: "my-button" %>
 <% end %>
