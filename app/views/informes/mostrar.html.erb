@@ -1,18 +1,18 @@
-<h1>informeEstudiante</h1>
+<h1>Nombre del Informe:<%= @informes.nombre %><br></h1>
 
-Nombres Informe:<%= @informes.nombre %><br>
-idddd Informe:<%= @informes.pregunta_informe %><br>
 
 
 <tr>
-  <td><dt>TUTORADOS:</dt>
-
-    <% @informe.pregunta_informes.each do |actual| %>
-        <br><%=actual.pregunta.pregunta%>
-    <% end %></td>
+  <td>
+    <dt>Contiene las siguientes preguntas:</dt>
+  </td>
+  <% PreguntaInforme.where(informe_id: @informes.id).each do |actual| %>
+      <ul><li><%= actual.pregunta.pregunta %></li></ul>
+      <br>
+  <% end %>
 </tr>
 
 
-<%= link_to 'Volver', root_path, class:'btn btn-info' %><br>
+<%= link_to 'Volver', informes_path, class: 'btn btn-info' %><br>
 
 <br><br><br>

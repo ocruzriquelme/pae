@@ -1,15 +1,21 @@
-<h2>Iniciar Sesion</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email, placeholder: 'ejemplo@utem.cl', required: false, autofocus: true %>
-    <%= f.input :password, required: false %>
-    <%= f.input :remember_me,label: 'Recuerdame', as: :boolean if devise_mapping.rememberable? %>
-  </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Entrar" %>
-  </div>
+<div class="table">
+  <table class="table">
+    <div class="input-group margin-bottom-sm">
+      <h2>Iniciar Sesion</h2>
+      <tr>
+      <td><%= f.input :email, placeholder: 'ejemplo@utem.cl', required: false, autofocus: true %></td>
+        <td><%= f.input :password, required: false %></td>
+      </tr>
+    </div>
+    <div class="form-actions">
+      <td><%= f.input :remember_me,label: 'Recuerdame', as: :boolean if devise_mapping.rememberable? %></td>
+      <td><%= f.button :submit, "Entrar" %></td>
+    </div>
 <% end %>
+  </table>
+</div>
 
 <%= render "admins/shared/links" %>

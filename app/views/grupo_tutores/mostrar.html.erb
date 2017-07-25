@@ -1,0 +1,13 @@
+<h1>Grupos de : <%= @estudiante.nombres %></h1>
+<% if @estudiante.grupo_tutors.size > 0 %>
+    <p><strong><%= 'Numero de grupo historico : ' + @estudiante.grupo_tutors.size.to_s%></strong></p> <br>
+    <% @estudiante.grupo_tutors.each do |actual| %>
+
+        <%= link_to actual.created_at.strftime("%m-%Y") ,grupo_tutorado_url(actual.id) , class:'btn btn-primary btn-md' %>
+
+    <% end %>
+<% else %>
+    <p>No tiene grupo </p>
+<% end %> <br><br>
+
+<%= link_to 'Volver', grupotutores_url, class: 'btn btn-info' %>

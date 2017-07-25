@@ -1,0 +1,2 @@
+module InformeEstudiantesHelper
+end

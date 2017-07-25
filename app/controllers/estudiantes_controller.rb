@@ -6,7 +6,7 @@ class EstudiantesController < ApplicationController
 
   def index
     @index = 'index'
-    @estudiantes = Estudiante.all
+    @estudiantes = Estudiante.paginate(:page => params[:page], :per_page => 12)
   end
 
   def crear
@@ -75,7 +75,7 @@ class EstudiantesController < ApplicationController
   end
 
   def tutorados
-    @index = 'no index'
+    @index = 'index'
     @estudiantes = Estudiante.where(rol_id: (Rol.find_by_nombres('Tutorado')).id).paginate(:page => params[:page], :per_page => 12)
     respond_to do |format|
       format.html {render :template => "/estudiantes/index"}

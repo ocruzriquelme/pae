@@ -1,0 +1,31 @@
+<%= simple_form_for @informe_estudiantes, url: agregar_informe_estudiante_url, as: 'nueva_informe_estudiante'  do |f| %>
+    <%= f.error_notification %>
+
+
+    <p>
+      <%= f.label :informe %><br>
+      <%= f.select('informe_id', Informe.all.collect {|c| [c.nombre, c.id]}, { include_blank: true }, {class: 'chosen-select'}) %>
+    </p>
+
+    <p>
+      <%= f.label :tutores %><br>
+      <%= f.select('estudiante_id', Estudiante.where(rol_id: (Rol.find_by_nombres('Tutor')).id).collect {|c| [c.nombres, c.id]}, { include_blank: true }, {class: 'chosen-select', multiple:true}) %>
+    </p>
+
+    <p>
+      <%= f.label :fecha %> <br>
+      <%= f.date_field :fecha %>
+    </p>
+
+    <p>
+      <%= f.label :estado%> <br>
+      <%= f.text_field :estado %>
+    </p>
+
+
+    <%= f.button :submit, "Guardar", class: "my-button" %>
+
+
+
+
+<% end %>

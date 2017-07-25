@@ -1,8 +1,8 @@
 class GrupoTutoresController < ApplicationController
-  before_action :authenticate_admin!
+
 
   def index
-    @grupo_tutores = GrupoTutor.all
+    @estudiantes = Estudiante.where(rol_id: Rol.find_by_nombres('Tutor'))
   end
 
   def nuevo
@@ -19,7 +19,11 @@ class GrupoTutoresController < ApplicationController
   end
 
   def mostrar
-    @grupo_tutores = GrupoTutor.find(params[:id])
+    estudiante_id = params[:id]
+
+     @estudiante = Estudiante.find(estudiante_id)
+
+
   end
 
   def editar

@@ -16,20 +16,26 @@
   <!-- sidebar menu: : style can be found in sidebar.less -->
 
     <ul class="sidebar-menu">
-      <%= nav_link estudiantes_path do %>
-          <i class="fa fa-dashboard"></i> <span>Estudiante</span>
+      <li>
+      <%= nav_link inicio_path do %>
+          <i class="fa fa-dashboard"></i> <span>Inicio</span>
+      <% end %>
+        <%= nav_link estudiantes_path do %>
+        <span>Estudiante</span>
       <% end %>
       <%= nav_link grupotutores_path do %>
           <span>Tutores</span>
       <% end %>
       <%= nav_link tutorados_path do %>
           <i ></i> <span>Tutorado</span>
-      <% end %>
-      <%= nav_link nuevo_pregunta_path do %>
-          <i ></i> <span>Crear Preguntas</span>
+      <% end %></li>
+      <%= nav_link preguntas_path do %>
+          <i ></i> <span>Preguntas</span>
       <% end %>
       <%= nav_link informes_path do %>
-          <i ></i> <span>Crear Informe</span>
+          <i ></i> <span>Informes</span>
       <% end %>
     </ul>
+
+  
   </section>

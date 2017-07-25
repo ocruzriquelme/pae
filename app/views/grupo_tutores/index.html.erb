@@ -6,18 +6,20 @@
     <th>Nombres Tutores</th>
     <th>Apellidos</th>
     <th>Mostrar</th>
-    <th>Editar Grupo</th>
+    <th>Asignar Informe</th>
+
   </tr>
   </thead>
   <tbody>
 
-  <% @grupo_tutor.estudiante.each do |grupotutores| %>
+  <% @estudiantes.each do |estudiante| %>
       <tr>
-        <td><%= grupotutores.nombres %></td>
-        <td><%= grupotutores.apellidos %></td>
+        <td><%= estudiante.nombres %></td>
+        <td><%= estudiante.apellidos %></td>
 
-        <td><%= link_to 'Mostrar', grupotutores_url(grupotutores) %></td>
-        <td><%= link_to 'Editar', editar_grupo_tutor_path(grupotutores) %></td>
+        <td><%= link_to 'Mostrar', tutore_path(estudiante),class: 'btn btn-info' %></td>
+        <td><%= link_to 'Informe', informeestudiante_path(estudiante),class: 'btn btn-info' %> </td>
+
       </tr>
   <% end %>
   </tbody>

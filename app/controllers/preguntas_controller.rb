@@ -1,5 +1,5 @@
 class PreguntasController < ApplicationController
-  before_action :set_pregunta, only: [:pregunta]
+  before_action :set_pregunta, only: [:pregunta,:editar, :mostrar, :update ,:eliminar]
 
   def index
     @pregunta = Pregunta.all

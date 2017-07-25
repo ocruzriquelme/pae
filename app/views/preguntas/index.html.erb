@@ -1,9 +1,30 @@
-<% content_for :content_header  do %>
-  <section class="content-header">
-    <h1>Preguntas <small>#index</small></h1>
-  </section>
-<% end %>
+<div class = "row">
+  <div class="col-sm-4"><h3> <%= link_to 'Crear pregunta', nuevo_pregunta_path, class:'btn btn-primary btn-md' %> </h3>
+  </div>
 
-<section class="content invoice">
-  <p>Find me in app/views/preguntas/index.html.erb</p>
-</section>
+
+</div>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Preguntas</th>
+    <th>Mostrar</th>
+    <th>Editar</th>
+
+
+
+
+  </tr>
+  </thead>
+  <tbody>
+  <% @pregunta.each do |informe| %>
+      <tr>
+        <td><%= informe.pregunta %></td>
+        <td><%= link_to 'Mostrar', pregunta_url(informe),class: 'btn btn-info' %></td>
+        <td><%= link_to 'Editar', editar_pregunta_url(informe),class: 'btn btn-info' %></td>
+
+      </tr>
+  <% end %>
+  </tbody>
+
+</table>

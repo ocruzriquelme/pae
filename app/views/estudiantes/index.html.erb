@@ -27,11 +27,14 @@
               <%= estudiante.priorizacion.nombre.to_s %>
           <% end %>
         </td>
-        <td><%= link_to 'Mostrar', estudiante_url(estudiante) %></td>
-        <td><%= link_to 'Editar', editar_estudiante_path(estudiante) %></td>
-        <td><%= link_to 'Asignatura', asignaturas_estudiantes_path(estudiante) %></td>
+        <td><%= link_to 'Mostrar', estudiante_url(estudiante),class: 'btn btn-info' %></td>
+        <td><%= link_to 'Editar', editar_estudiante_path(estudiante),class: 'btn btn-info' %></td>
+        <td><%= link_to 'Asignatura', asignaturas_estudiantes_path(estudiante),class: 'btn btn-info' %></td>
       </tr>
   <% end %>
+
   </tbody>
 
 </table>
+
+<%= will_paginate @estudiantes, renderer: BootstrapPagination::Rails %>

@@ -17,7 +17,7 @@ class PreguntaInformesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html{redirect_to pregunta_informe_path(informe_id), notice: 'Creado'}
+      format.html{redirect_to informe_path(Informe.find(informe_id)), notice: 'Creado'}
     end
   end
 
