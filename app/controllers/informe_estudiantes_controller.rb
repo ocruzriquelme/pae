@@ -20,7 +20,7 @@ class InformeEstudiantesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html{redirect_to informeestudiante_path(informe_id), notice: 'Grupo creado'}
+      format.html{redirect_to informeestudiantes_path(informe_id), notice: 'Grupo creado'}
       end
     end
 
