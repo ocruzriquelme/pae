@@ -77,7 +77,7 @@ Rails.application.routes.draw do
   get 'grupotutores/:id/tutorados/nuevo/', to: 'grupo_tutorados#nuevo', as: 'nuevo_grupo_tutorado'
   get 'grupotutorados/:id',to: 'grupo_tutorados#mostrar', as: 'grupo_tutorado'
   #get 'grupotutorados/:id/editar', to: 'grupo_tutorados#editar', as: 'editar_grupo_tutorado'
-  post 'grupotutorados/', to: 'grupo_tutorados#crear', as: 'agregar_tutorado_grupo'
+  post 'grupotutorados', to: 'grupo_tutorados#crear', as: 'agregar_tutorado_grupo'
   put 'grupotutorados/:id' , to: 'grupo_tutorados#update'
   patch 'grupotutorados/:id' ,to: 'grupo_tutorados#update'
   delete 'grupotutorados/:id', to: 'grupo_tutorados#eliminar'

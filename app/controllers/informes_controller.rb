@@ -26,11 +26,24 @@ class InformesController < ApplicationController
   end
 
   def eliminar
-    @informe.destroy(pregunta_informe_params)
+    @informes.destroy(pregunta_informe_params)
     respond_to do |format|
       format.html {redirect_to @pregunta_informe, notice:'Se el informe'}
     end
   end
+
+  def informes_por_estudiante
+    estudiante_id = params[:id]
+    informes = InformeEstudiante.where(estudiante_id: estudiante_id )
+    informes.each do |actual|
+      actual.estudiante.id
+    end
+    informe = Informe.find(estudiante_id)
+    respond_to do |format|
+      format.html{redirect_to informeestudiante_path(estudiante_id), notice: 'Mostrar'}
+    end
+
+end
 
   def update
     respond_to do |format|

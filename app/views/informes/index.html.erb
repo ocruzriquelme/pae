@@ -2,6 +2,8 @@
 
   <div class="col-sm-4"><h3> <%= link_to 'Crear Informe', nuevo_informe_path, class:'btn btn-primary btn-md' %> </h3>
   </div>
+  <div class="col-sm-4"><h3> <%= link_to 'Asignar Informe', nuevo_informe_estudiante_path, class:'btn btn-primary btn-md' %> </h3>
+  </div>
 
 
 </div>
@@ -17,7 +19,7 @@
       <tr>
         <td><%= informe.nombre %></td>
         <td><%= link_to 'Mostrar', informe_url(informe),class: 'btn btn-info' %></td>
-        <td><%= link_to 'Asignar', nuevo_informe_estudiante_url(informe),class: 'btn btn-info' %></td>
+
       </tr>
   <% end %>
   </tbody>

@@ -2,10 +2,11 @@
     <%= f.error_notification %>
 
     <p>
-      <%= f.label :nombre %> <br>
-      <%= f.text_field :nombre %>
+      <%= f.input :nombre%>
     </p>
 
-    <p><%= f.submit "Enviar" %></p>
+
+    <%= f.button :submit, "Guardar", class: "my-button" %>
+    <br><br>
 <% end %>
 

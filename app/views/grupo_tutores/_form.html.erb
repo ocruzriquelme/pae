@@ -4,7 +4,7 @@
 
     <p>
     <%= f.label :grupo_tutor %><br>
-    <%= f.select('estudiante_id', Estudiante.where(rol_id: (Rol.find_by_nombres('Tutor')).id).collect {|c| [c.nombres, c.id]}, { include_blank: true }, {class: 'chosen-select'}) %>
+    <%= f.select('estudiante_id', Estudiante.where(rol_id: (Rol.find_by_nombres('Tutor')).id).collect {|c| [c.nombres, c.id]}, { include_blank: false }, {class: 'chosen-select'}) %>
     </p>
 
 

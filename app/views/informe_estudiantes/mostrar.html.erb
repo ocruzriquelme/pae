@@ -1,1 +1,9 @@
-<h2>gdsfdsfs</h2>
+<h1>Informacion de informe N° : <%= @informe_estudiantes. %></h1>
+
+       <% InformeEstudiante.where(estudiante_id: 5).each do |actual| %>
+    <ul><li><%= actual.estado %></li></ul>
+    <ul><li><%= actual.informe_id %></li></ul>
+    <ul><li><%= actual.estudiante_id %></li></ul>
+    <ul><li><%= actual.estudiante.nombres %></li></ul>
+    <br>
+<% end %>

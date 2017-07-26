@@ -5,6 +5,7 @@ class Estudiante < ApplicationRecord
   belongs_to :rol
   has_many :grupo_tutors
   has_many :grupo_tutorados
+  has_many :informe_estudiantes
   belongs_to :carrera
   belongs_to :priorizacion
   belongs_to :comuna

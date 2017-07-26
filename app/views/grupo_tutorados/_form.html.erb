@@ -4,7 +4,7 @@
     <%= f.hidden_field(:grupo_tutor_id, :value => @grupo_tutor.id) %>
 <p>
   <%= f.label :tutoriados %><br>
-  <%= f.select('estudiante_id', Estudiante.where(rol_id: (Rol.find_by_nombres('Tutorado')).id).collect {|c| [c.nombres, c.id]}, { include_blank: true }, {class: 'chosen-select', multiple:true}) %>
+  <%= f.select('estudiante_id', Estudiante.where(rol_id: (Rol.find_by_nombres('Tutorado')).id).collect {|c| [c.nombres, c.id]}, { include_blank: false }, {class: 'chosen-select', multiple:true}) %>
 </p>
 
     <%= f.button :submit, "Guardar", class: "my-button" %>

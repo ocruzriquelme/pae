@@ -27,7 +27,8 @@ class InformeEstudiantesController < ApplicationController
   end
 
   def mostrar
-    @informe_estudiantes = InformeEstudiante.find(params[:id])
+    estudiante_id = params[:id]
+    @estudiante = Estudiante.find(estudiante_id)
   end
 
   def editar
