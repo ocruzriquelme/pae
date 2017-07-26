@@ -17,10 +17,6 @@ class Estudiante < ApplicationRecord
   validates :rut, uniqueness: true, rut:true
 
   validates :nombres, presence: {:message => "LLenado Obligatorio"}
-  validates :nombres, format:{with: /\A[a-zA-Z\s]+\z/,message: "Solo acepta letras"}
-  validates :nombres, length: {minimum: 3, maximum: 30, :message => "El nombre debe tener entre 3 y 15 caracteres"}
-
   validates :apellidos, presence: {:message => "LLenado Obligatorio"}
-  validates :apellidos, format:{with: /\A[a-zA-Z\s]+\z/,message: "Solo acepta letras"}
-  validates :apellidos, length: {minimum: 3, maximum: 30, :message => "El nombre debe tener entre 3 y 15 caracteres"}
+
 end
