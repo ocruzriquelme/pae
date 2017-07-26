@@ -2,8 +2,7 @@
 
   <div class="col-sm-4"><h3> <%= link_to 'Crear Informe', nuevo_informe_path, class:'btn btn-primary btn-md' %> </h3>
   </div>
-  <div class="col-sm-4"><h3> <%= link_to 'Asignar Informe', nuevo_informe_estudiante_path, class:'btn btn-primary btn-md' %> </h3>
-  </div>
+
 
 
 </div>
@@ -11,14 +10,14 @@
   <thead>
   <tr>
     <th>Nombres de los informes</th>
-    <th colspan="2">Mostrar Informes</th>
+    <th colspan="2">Asignar</th>
   </tr>
   </thead>
   <tbody>
   <% @informe.each do |informe| %>
       <tr>
         <td><%= informe.nombre %></td>
-        <td><%= link_to 'Mostrar', informe_url(informe),class: 'btn btn-info' %></td>
+        <td><%= link_to 'Asignar Informe', nuevo_informe_estudiante_path(informe),class: 'btn btn-info' %></td>
 
       </tr>
   <% end %>
