@@ -5,7 +5,7 @@
   <tr>
     <th>Nombres Tutores</th>
     <th>Apellidos</th>
-    <th>Mostrar Grupo</th>
+    <th>Mostrar</th>
     <th>Informe Asignado</th>
 
   </tr>
@@ -18,7 +18,7 @@
         <td><%= estudiante.apellidos %></td>
 
         <td><%= link_to 'Mostrar', tutore_path(estudiante),class: 'btn btn-info' %></td>
-        <td><%= link_to 'Informe', informeestudiante_path(estudiante),class: 'btn btn-info' %> </td>
+        <td><%= link_to 'Informe', informe_path(estudiante),class: 'btn btn-info' %> </td>
 
       </tr>
   <% end %>

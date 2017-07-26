@@ -1,4 +1,4 @@
-<h1>Informacion de informe N° : <%= @informe_estudiantes. %></h1>
+<h1>Informacion de informe N° : <%= @informe_estudiantes %></h1>
 
        <% InformeEstudiante.where(estudiante_id: 5).each do |actual| %>
     <ul><li><%= actual.estado %></li></ul>

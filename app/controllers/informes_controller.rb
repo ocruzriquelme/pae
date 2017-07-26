@@ -42,7 +42,6 @@ class InformesController < ApplicationController
     respond_to do |format|
       format.html{redirect_to informeestudiante_path(estudiante_id), notice: 'Mostrar'}
     end
-
 end
 
   def update

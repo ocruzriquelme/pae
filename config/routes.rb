@@ -12,7 +12,10 @@ Rails.application.routes.draw do
 
   get 'informeestudiante/', to: 'informe_estudiantes#index', as: 'informeestudiantes'
   get 'informeestudiante/nuevo/', to: 'informe_estudiantes#nuevo', as: 'nuevo_informe_estudiante'
-  get 'informeestudiante/:id',to: 'informe_estudiantes#mostrar', as: 'informeestudiante'
+  #get 'informeestudiante/:id',to: 'informe_estudiantes#mostrar', as: 'informeestudiante'
+
+  get 'informeestudiante/:id/estudiante',to: 'informe_estudiantes#informes_por_estudiante', as: 'informeporestudiante'
+
   get 'informeestudiante/:id/editar', to: 'informe_estudiantes#editar', as: 'editar_informe_estudiante'
   post 'informeestudiante/', to: 'informe_estudiantes#crear', as: 'agregar_informe_estudiante'
   put 'informeestudiante/:id' , to: 'informe_estudiantes#update'
